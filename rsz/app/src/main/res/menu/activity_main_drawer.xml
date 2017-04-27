@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_camera"
+
+            android:title="Kalendarz" />
+        <item
+            android:id="@+id/nav_gallery"
+            android:title="Trening" />
+        <item
+            android:id="@+id/nav_slideshow"
+            android:title="Dieta" />
+
+    </group>
+
+    <item android:title="Napisz do nas">
+        <menu>
+            <item
+                android:id="@+id/nav_share"
+                android:icon="@drawable/ic_menu_share"
+                android:title="FB" />
+            <item
+                android:id="@+id/nav_send"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Kontakt" />
+
+        </menu>
+    </item>
+
+    <item android:title="Panel użytkownika">
+        <menu>
+            <item
+                android:id="@+id/nav_manage"
+                android:title="Zaloguj" />
+            <item
+                android:id="@+id/nav_send2"
+                android:title="Wyloguj" />
+            <item
+                android:id="@+id/nav_manage3"
+                android:title="Edytuj informacje" />
+        </menu>
+    </item>
+</menu>
