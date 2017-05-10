@@ -9,12 +9,17 @@ public class HelperDB {
     double weight;
     double height;
 
+
     HelperDB(String _login, double _weight, double _height)
     {
         this.login = _login;
         this.weight = _weight;
         this.height = _height;
+
     }
+
+
+
 
     String getLogin()
     {
