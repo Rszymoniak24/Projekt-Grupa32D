@@ -1,6 +1,9 @@
+package com.example.p0yerb4ny.project_views;
 
-
+import android.content.ContentValues;
+import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 /**
@@ -25,7 +28,7 @@ public class MySQLite extends SQLiteOpenHelper {
                 + "rodzajTreningu TEXT, "
                 + "opisTreningu TEXT )";
 // create books table
-        databaseb.execSQL(CREATE_TRENING_TABLE);
+        database.execSQL(CREATE_TRENING_TABLE);
     }
     @Override
     public void onUpgrade(SQLiteDatabase db,

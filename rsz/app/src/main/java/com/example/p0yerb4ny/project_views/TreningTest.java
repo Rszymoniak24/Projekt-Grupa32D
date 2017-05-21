@@ -1,6 +1,5 @@
-package com.example.ukasz.lab3;
+package com.example.p0yerb4ny.project_views;
 
-import static org.junit.Assert.*;
 
 /**
  * Created by Łukasz on 2017-05-11.
@@ -36,5 +35,4 @@ class Trening {
 
     public int getId(){return id;}
     public void setId(int id){this.id=id;}
-}
 }
