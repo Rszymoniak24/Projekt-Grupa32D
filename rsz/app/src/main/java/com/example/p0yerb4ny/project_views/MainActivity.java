@@ -1,8 +1,10 @@
 package com.example.p0yerb4ny.project_views;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.view.MenuInflater;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,7 +14,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,6 +30,7 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        db = new MySQLite(this);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -54,7 +60,26 @@ public class MainActivity extends AppCompatActivity
 
                 SimpleCursorAdapter.IGNORE_ITEM_VIEW_TYPE
         );
+        ListView listview = (ListView) findViewById(
+                R.id.listView );
+        listview.setAdapter(this.adapter);
+
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?>adapter, View view, int pos, long id)
+            {
+                TextView name = (TextView)view.findViewById(android.R.id.text1);
+                Cwiczenie cwiczenie = db.pobierz(Integer.parseInt(name.getText().toString()));
+                Intent intencja = new Intent(getApplicationContext(),DodajWpis.class);
+                intencja.putExtra("element", cwiczenie);
+                startActivityForResult(intencja, 2); //numer id na wywolanie cwiczenia - edytuj
+
+            }
+        });
     }
+
+
 
     @Override
     public void onBackPressed() {
@@ -69,8 +94,47 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+//        getMenuInflater().inflate(R.menu.main, menu);
+//        return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu, menu);
         return true;
+    }
+
+    public void nowyWpis(MenuItem mi)
+    {
+       Intent intencja = new Intent(this,
+               DodajWpis.class);
+       startActivityForResult(intencja, 1); //numer id na wywolanie cwiczenia - dodaj
+    }
+
+    @Override
+    protected void onActivityResult(
+            int requestCode, int resultCode, Intent data)
+    {
+        if(requestCode==1 && resultCode==RESULT_OK)
+        {
+            Bundle extras = data.getExtras();
+            Cwiczenie nowy = (Cwiczenie)extras.getSerializable("nowy");
+            this.db.dodaj(nowy);
+            adapter.changeCursor(db.lista());
+            adapter.notifyDataSetChanged();
+
+            /*Bundle extras = data.getExtras();
+            String nowy = (String)extras.get("wpis");
+            target.add(nowy);
+            adapter.notifyDataSetChanged();*/
+        }
+        if(requestCode==2 && resultCode==RESULT_OK)
+        {
+            Bundle extras = data.getExtras();
+            Cwiczenie nowy = (Cwiczenie)extras.getSerializable("nowy");
+            this.db.aktualizuj(nowy);
+
+            adapter.changeCursor(db.lista());
+            adapter.notifyDataSetChanged();
+        }
+
     }
 
     @Override

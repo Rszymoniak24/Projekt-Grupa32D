@@ -2,37 +2,19 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    >
+    tools:context="com.example.p0yerb4ny.project_views.MainActivity">
 
-    <EditText
-        android:id="@+id/IloscSerii"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName|textVisiblePassword"
-        android:text="Ilosc serii"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="278dp" />
+    <ListView
+        android:id="@+id/listView"
 
-    <EditText
-        android:id="@+id/NazwaCwiczenia"
         android:layout_width="368dp"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Nazwa Cwiczenia"
-        tools:layout_editor_absoluteX="8dp"
-        tools:layout_editor_absoluteY="100dp" />
-
-    <EditText
-        android:id="@+id/IloscPowtorzen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName|textVisiblePassword"
-        android:text="Ilosc powtorzen"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="206dp" />
+        android:layout_height="377dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.664" />
 </android.support.constraint.ConstraintLayout>

@@ -23,8 +23,12 @@
         app:menu="@menu/activity_main_drawer" />
 
     <include
-        layout="@layout/activity_login"
+        layout="@layout/treningi_cwiczenia"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
+<!--<include-->
+        <!--layout="@layout/activity_login"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent" />-->
 
 </android.support.v4.widget.DrawerLayout>

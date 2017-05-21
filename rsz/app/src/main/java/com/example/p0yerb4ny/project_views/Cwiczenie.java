@@ -25,7 +25,7 @@ public class Cwiczenie implements Serializable {
 
     @Override
     public String toString(){
-        return "Zwierze: [id="+id+",nazwa cwiczenia="+nazwaCwiczenia+",ilosc powtorzen ="+iloscPowtorzen+"ilosc serii ="+iloscSerii+"]" ;
+        return "Cwiczenie: [id="+id+",nazwa cwiczenia="+nazwaCwiczenia+",ilosc powtorzen ="+iloscPowtorzen+"ilosc serii ="+iloscSerii+"]" ;
 
     }
 
