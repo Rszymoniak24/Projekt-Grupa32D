@@ -73,9 +73,9 @@ public class MainActivity extends AppCompatActivity
             public void onItemClick(AdapterView<?>adapter, View view, int pos, long id)
             {
                 TextView name = (TextView)view.findViewById(android.R.id.text1);
-                Cwiczenie cwiczenie = db.pobierz(Integer.parseInt(name.getText().toString()));
+              Cwiczenie cwiczenie = db.pobierz(Integer.parseInt(name.getText().toString()));
                 Intent intencja = new Intent(getApplicationContext(),DodajWpis.class);
-                intencja.putExtra("element", cwiczenie);
+               intencja.putExtra("element", cwiczenie);
                 startActivityForResult(intencja, 2); //numer id na wywolanie cwiczenia - edytuj
 
             }

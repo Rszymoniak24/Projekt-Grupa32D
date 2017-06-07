@@ -22,8 +22,8 @@ public class MySQLite extends SQLiteOpenHelper {
         String DATABASE_CREATE = "create table cwiczenie " +
                         "(_id integer primary key autoincrement," +
                         "nazwaCwiczenia text not null," +
-                        "IloscPowtorzen real not null," +
-                        "IloscSerii real not null);";
+                        "iloscPowtorzen real not null," +
+                        "iloscSerii real not null);";
         database.execSQL(DATABASE_CREATE);
     }
     @Override
@@ -47,7 +47,7 @@ public class MySQLite extends SQLiteOpenHelper {
     public void usun(String id) {
         SQLiteDatabase db =
                 this.getWritableDatabase();
-        db.delete("animals", "_id = ?",
+        db.delete("cwiczenie", "_id = ?",
                 new String[] { id });
         db.close();
     }
@@ -59,20 +59,18 @@ public class MySQLite extends SQLiteOpenHelper {
         values.put("nazwaCwiczenia", c.getNazwaCwiczenia());
         values.put("iloscPowtorzen", c.getIloscPowtorzen());
         values.put("iloscSerii", c.getIloscSerii());
-        int i = db.update("animals", values, "_id = ?", new String[]{String.valueOf(c.getId())});
+        int i = db.update("cwiczenie", values, "_id = ?", new String[]{String.valueOf(c.getId())});
 
         db.close();
         return i;
     }
 
     public Cwiczenie pobierz(int id){
-        SQLiteDatabase db =
-                this.getReadableDatabase();
-        Cursor cursor =
-                db.query("cwiczenie", //a. table name
+        SQLiteDatabase db =               this.getReadableDatabase();
+        Cursor cursor = db.query("cwiczenie", //a. table name
                         new String[] { "_id",
-                                "nazwaCwiczenia", "iloscPowotrzen", "iloscSerii"}, // b.column names
-                        " id = ?", // c. selections
+                                "nazwaCwiczenia", "iloscPowtorzen", "iloscSerii"}, // b.column names
+                        " _id = ?", // c. selections
                         new String[] {
                                 String.valueOf(id) }, // d. selections args
                         null, // e. group by
@@ -81,13 +79,10 @@ public class MySQLite extends SQLiteOpenHelper {
                         null); // h. limit
         if (cursor != null)
             cursor.moveToFirst();
-        Cwiczenie c = new
-                Cwiczenie(cursor.getString(1), cursor.getInt(2),
-                cursor.getInt(3));
-
-        c.setId(Integer.parseInt(cursor.getString(0))
-        );
+        Cwiczenie c = new Cwiczenie(cursor.getString(1), cursor.getInt(2), cursor.getInt(3));
+        c.setId(Integer.parseInt(cursor.getString(0)));
         return c;
+
     }
 
     public Cursor lista(){

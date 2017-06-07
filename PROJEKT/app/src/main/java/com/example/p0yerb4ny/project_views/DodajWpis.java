@@ -43,9 +43,9 @@ public class DodajWpis extends AppCompatActivity {
                             findViewById(R.id.IloscPowtorzen);
                     NazwaCwiczenia.setText(c.getNazwaCwiczenia());
                     IloscSerii.setText(
-                            Float.toString(c.getIloscSerii()));
+                            Integer.toString(c.getIloscSerii()));
                     IloscPowtorzen.setText(
-                            Float.toString(c.getIloscPowtorzen()));
+                            Integer.toString(c.getIloscPowtorzen()));
                     this.modyfi_id = c.getId();
                 }
             } catch (Exception ex) {
