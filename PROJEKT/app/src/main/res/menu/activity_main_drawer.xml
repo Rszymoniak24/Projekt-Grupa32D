@@ -33,12 +33,6 @@
         <menu>
             <item
                 android:id="@+id/nav_manage"
-                android:title="Zaloguj" />
-            <item
-                android:id="@+id/nav_send2"
-                android:title="Wyloguj" />
-            <item
-                android:id="@+id/nav_manage3"
                 android:title="Edytuj informacje" />
         </menu>
     </item>

@@ -25,8 +25,31 @@ public class MySQLite extends SQLiteOpenHelper {
                         "iloscPowtorzen real not null," +
                         "iloscSerii real not null);";
         database.execSQL(DATABASE_CREATE);
+        dataInit(database);
     }
-    @Override
+
+
+
+    private void dataInit(SQLiteDatabase db) {
+        dodaj_init(new Cwiczenie("Wyciskanie na ławce skośnej", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Uginanie przedramion ze sztangą siedząc na modlitewniku", 4 ,15),db);
+        dodaj_init(new Cwiczenie("Naprzemienne uginanie przedramion stojąc", 4 ,12),db);
+        dodaj_init(new Cwiczenie("Unoszenie hantli bokiem w opadzie lub przyciąganie sznurkami na wyciągu w opadzie", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Unoszenie barków ze sztangą lub hantlami", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Ściąganie zza głowy siedząc na maszynie lub drążka na wyciągu stojąc", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Podciąganie sztangielki jednorącz w opadzie", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Wiosłowanie siedząc na wyciągu", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Ściąganie drążka z wyciągu przed głową (szeroki nachwyt lub podciąganie się)", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Wyciskanie francuskie leżąc lub siedząc", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Wznosy ramion bokiem z hantlami", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Wyciskanie na suwnicy siedząc przed głową", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Wypychanie na maszynie (uchwyt dolny)", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Rozpiętki na maszynie", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Prostowanie nóg na maszynie", 3 ,15),db);
+        dodaj_init(new Cwiczenie("Podciąganie nóg leżąc na maszynie", 3 ,15),db);
+
+    }
+        @Override
     public void onUpgrade(SQLiteDatabase db,
                           int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS cwiczenie");
@@ -41,7 +64,15 @@ public class MySQLite extends SQLiteOpenHelper {
         values.put("iloscPowtorzen", c.getIloscPowtorzen());
         values.put("iloscSerii", c.getIloscSerii());
         db.insert("cwiczenie", null, values);
-        db.close();
+    }
+
+    public void dodaj_init(Cwiczenie c, SQLiteDatabase db) {
+        ContentValues values = new ContentValues();
+        values.put("nazwaCwiczenia", c.getNazwaCwiczenia());
+        values.put("iloscPowtorzen", c.getIloscPowtorzen());
+        values.put("iloscSerii", c.getIloscSerii());
+        db.insert("cwiczenie", null, values);
+
     }
 
     public void usun(String id) {
